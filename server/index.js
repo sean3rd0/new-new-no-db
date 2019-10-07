@@ -9,7 +9,8 @@ app.use(express.json())
 
 app.get("/api/lists", ctrl.displayAllLists);
 app.post("/api/lists", ctrl.createNewList); 
-app.put("/api/lists/:id", ctrl.editListTitle)
+app.put("/api/lists/:id", ctrl.editListTitle);
+app.delete("/api/lists/:id", ctrl.deleteList);
 
 
 app.listen(SERVER_PORT, () => {

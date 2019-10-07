@@ -9,6 +9,8 @@ const DisplayOfLists = (props) => {
             key={individualList.listID} 
             listID={individualList.listID} 
             titleOfList={individualList.titleOfList}
+            editListTitle={props.editListTitle} 
+            deleteList={props.deleteList}
           />
         // <div className="list-of-TTR" key={indexOfList}>
         //   <h2 className="title-of-list">{individualList.titleOfList} <button 

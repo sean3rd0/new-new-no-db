@@ -26,7 +26,8 @@ class App extends React.Component {
     }
 
     this.createNewList = this.createNewList.bind(this)
-
+    this.editListTitle = this.editListTitle.bind(this)
+    this.deleteList = this.deleteList.bind(this)
   }
   
   componentDidMount() {
@@ -60,12 +61,26 @@ class App extends React.Component {
       })
   }
 
+  deleteList(id) {
+    axios.delete(`/api/lists/:${id}`)
+      .then(res => {
+        this.setState({
+          arrayOfLists: res.data
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   render() {
     return (
       <div className="App">
         <Header createNewList={this.createNewList} />
         <DisplayOfLists 
           arrayOfLists={this.state.arrayOfLists} 
+          editListTitle={this.editListTitle}
+          deleteList={this.deleteList}
           // titleEdit={this.state.titleEdit}
           // quoteEdit={this.state.quoteEdit}
         />

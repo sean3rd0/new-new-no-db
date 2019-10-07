@@ -7,11 +7,19 @@ class IndividualList extends React.Component {
         super()
 
         this.state = {
-            titleEdit: false
+            titleEdit: false, 
+            titleOfList: ""
         }
 
         this.toggleEditFalse = this.toggleEditFalse.bind(this)
         this.toggleEditTrue = this.toggleEditTrue.bind(this)
+        this.handleTitleEdit = this.handleTitleEdit.bind(this)
+    }
+
+    componentDidMount() {
+        this.setState({
+            titleOfList: this.props.titleOfList
+        })
     }
 
     toggleEditFalse() {
@@ -27,18 +35,30 @@ class IndividualList extends React.Component {
         
     }
 
+    handleTitleEdit(value) {
+        this.setState({
+            titleOfList: value
+        })
+    }
+
     render() {
+        console.log(this.state.titleOfList)
         return (
             <div>
                 {this.state.titleEdit === true ? 
                     <TitleEditTrue 
-                        titleOfList={this.props.titleOfList}
+                        titleOfList={this.state.titleOfList}
                         toggleEditFalse={this.toggleEditFalse}
+                        listID={this.props.listID}
+                        // handleTitleEdit={this.handleTitleEdit}
+                        editListTitle={this.props.editListTitle}
                     />
                     : 
                     <TitleEditFalse 
-                        titleOfList={this.props.titleOfList}
+                        titleOfList={this.state.titleOfList}
                         toggleEditTrue={this.toggleEditTrue}
+                        listID={this.props.listID}
+                        deleteList={this.props.deleteList}
                     />
                 }
             </div>

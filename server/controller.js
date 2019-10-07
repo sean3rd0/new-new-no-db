@@ -29,12 +29,30 @@ module.exports = {
     editListTitle (req, res) {
         let {titleOfList} = req.body;
         let {id} = req.params;
+        // indexToFind = element => {
+        //     +id === +element.listID
+        // }
+        // listTitleToEdit = arrayOfLists.findIndex(indexToFind)
+        // arrayOfLists[listTitleToEdit] = {
+        //     listID: +id, 
+        //     titleOfList: titleOfList
+        // }
         arrayOfLists = arrayOfLists.map(individualList => {
             if (individualList.id === +id) {
                 return {id, titleOfList}
             }
             return individualList
         })
+        res.status(200).send(arrayOfLists)
+    },
+
+    deleteList(req, res) {
+        let indexToFind = element => {
+            return +element.listID === +req.params.id
+        }
+        listToDelete = arrayOfLists.findIndex(indexToFind);
+        arrayOfLists.splice(listToDelete, 1)
+        res.status(200).send(arrayOfLists)
     }
     // ,
 
